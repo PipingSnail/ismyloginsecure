@@ -1,0 +1,11 @@
+websites		617
+http transport		193	31%
+not secure		210	34%
+doesn't redirect	197	32%
+bad certificate		38	 6%
+mixed content		33	 5%
+
+no url			2	removed from stats
+
+TODO
+Any that fail with 400, try again, later

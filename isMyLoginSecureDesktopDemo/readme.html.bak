@@ -1,0 +1,39 @@
+<HTML>
+<head>
+<title>IsMyLoginSecure Readme</title>
+<link rel="stylesheet" href="sover.css" type="text/css">
+</head>
+
+<BODY style="font-family:arial">
+<a href="https://www.softwareverify.com"><img align="left" alt="Software Verify Logo" border="0" aheight="24" hspace="0" src="software-verify-logo.png" width="200"></a>
+<br clear="all">
+<p><div class="dividingLine"></div><p>
+
+<H1>IsMyLoginSecure Readme</H1>
+
+<P>This readme file contains late breaking information that did not make it into the help file
+for IsMyLoginSecure.
+
+<P>Home Page <a href="https://www.ismyloginsecure.com">Is My Login Secure</A>
+<BR>Support: <A href="mailto:ismyloginsecure@sprezzaturra.com">ismyloginsecure@sprezzaturra.com</A>
+
+<P><B>If you have contacted us and have not received a reply, this will be the reason.</B>
+
+<p><div class="dividingLine"></div><p>
+<H2>Getting Started</H2>
+
+<P>To get the most out of IsMyLoginSecure, please read the help file. 
+
+<p><div class="dividingLine"></div><p>
+<H2>History</H2>
+
+<p><div class="dividingLine"></div><p>
+<P><B>Version 1.00</B>
+<BR>Version 1.00 includes the following functionality:
+
+<UL>
+ <LI>Initial version of <a href="https://www.ismyloginsecure.com">IsMyLoginSecure</a>.</LI>
+</UL>
+
+</BODY>
+</HTML>

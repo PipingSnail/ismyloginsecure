@@ -1,0 +1,544 @@
+/* old background colour B492C4 a washed out purple	*/
+/* test colours:									*/
+/*		964fba										*/
+/*		462563 5a3081 6b3999						*/
+/* make sure you also modify svmenu.css				*/
+
+body{
+	font-family: Arial;/*Georgia, Verdana, Arial, Tahoma;*/
+	background:#ffffff;
+	color: #333333;
+	/*line-height: 1.166;	*/
+	margin: 0px;
+	padding: 0px;
+}
+
+a{
+	xcolor: #84469C;
+	text-decoration: none;
+}
+
+a:link{
+	xcolor: #84469C;
+	text-decoration: none;
+}
+
+a:visited{
+	xcolor: #9933FF;
+	text-decoration: none;
+}
+
+a:hover{
+	xcolor: #6CBA7C;
+	text-decoration: underline;
+}
+
+h1{
+ font-family: Arial;/*Georgia, Verdana, Arial, Tahoma;*/
+ /*font-size: 120%;*/
+ /*color: #334d55;*/
+ font-size: 120%;
+ color: #6b3999;	/*84469C;*/
+ margin: 0px;
+ padding: 0px;
+}
+
+h2{
+ font-family: Arial;/*Georgia, Verdana, Arial, Tahoma;*/
+ font-size: 110%;
+ color: #6b3999;	/*844A9D;*/
+ margin: 0px;
+ padding: 0px;
+}
+
+h3{
+ font-family: Arial;/*Georgia, Verdana, Arial, Tahoma;*/
+ font-size: 100%;
+ color: #6b3999;	/*84469C;*/
+ margin: 0px;
+ padding: 0px;
+}
+
+.H4 {
+ font-family: Arial;/*Georgia, Verdana, Arial, Tahoma;*/
+ font-weight: bold;
+ color: #6b3999;	/*84469C;*/
+ margin: 0px;
+ padding: 0px;
+}
+
+/***********************************************/
+/* Layout Divs                                 */
+/***********************************************/
+
+#testimonialBanner {
+	position:absolute; 
+	top:5px; 
+	height:95px; 
+	width:60%;
+	font-family: Arial;
+	font-size: 85%;
+}
+
+#testimonialMessage {
+	position:relative; 
+	left:30px; 
+	width:100%; 
+	height:100%; 
+	/*text-align:center; */
+	/*background:yellow;*/
+}
+
+#testimonialBannerRel {
+	position:relative; 
+	top:30px; 
+	height:95px; 
+	width:60%;
+	font-family: Arial;
+	font-size: 120%;
+}
+
+#testimonialMessageRel {
+	position:relative; 
+	left:0px; 
+	width:100%; 
+	height:100%; 
+	/*text-align:center; */
+	/*background:#ffffcc;*/
+}
+
+#testimonialQuote {
+	color:#6b3999;
+}
+
+#testimonialAttribution {
+	float:right; 
+	font-weight:bold;
+	color:#6b3999;
+}
+
+#masthead{
+	padding: 10px 0px 0px 0px;
+	border-bottom: 1px solid #7b51ae;
+	width: 100%;
+	background-image: url(images/dots.jpg);
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+#navBar{
+	float: left;
+	width: 18%;
+	margin: 0px;
+	padding: 0px;
+	background-color: #EEE7F1;
+	border-right: 0px solid #6b3999;	/* 1px */
+	border-bottom-width: 0px;			/* 1px */
+	border-bottom-style: solid;
+	border-bottom-color: #6b3999;
+}
+
+#navBarDeveloper{
+	float: left;
+	width: 15%;
+	margin: 0px;
+	padding: 0px;
+	background-color: #EEE7F1;
+	border-right: 0px solid #6b3999;	/* 1px */
+	border-bottom-width: 0px;			/* 1px */
+	border-bottom-style: solid;
+	border-bottom-color: #6b3999;
+}
+
+#headlinesPurchase{
+ float:right;
+	width: 125px;
+	border-left: 0px solid #6b3999;		/* 1px */
+	border-bottom: 0px solid #6b3999;	/* 1px */
+	padding-right: 10px;
+}
+
+#headlines{
+ float:right;
+	width: 18%;
+	border-left: 0px solid #6b3999;		/* 1px */
+	border-bottom: 0px solid #6b3999;	/* 1px */
+	padding-right: 10px;
+}
+
+#content_homepage{
+	float: left;
+  width: 80%;
+}
+
+#top_content{
+	float: left;
+	width: 80%;
+	padding: 0px 0px 0px 0px;
+	//background-color: red;
+}
+
+#basket_content{
+	float: left;
+	width: 80%;
+	padding: 0px;
+}
+
+#contentPurchase{
+	float: left;
+  width: 80%;
+}
+
+#content{
+	float: left;
+  width: 55%;
+}
+
+#contentNew{
+  float: left;
+  width: 80%;
+}
+
+#content_eval{
+	float: left;
+  width: 70%;
+}
+
+#content_free{
+	float: left;
+  width: 70%;
+}
+
+#content_purchase{
+	float: left;
+  width: 55%;
+}
+
+#content_ms{
+	float: left;
+  width: 100%;
+}
+
+#testimonial{
+	float:right;
+	width: 18%;
+	border-left: 0px solid #6b3999;		/* 1px */
+	border-bottom: 0px solid #6b3999;	/* 1px */
+	padding-right: 10px;
+	background-color: #E7DDEC;
+}
+
+#computerLanguageBar{
+	float:right;
+	font-size: 80%;
+	width: 18%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-left: 0px;
+	border-bottom: 0px;
+	padding-right: 10px;
+}
+
+/* class for text to use during purchasing - bold purple text */
+
+.purchasingStep {
+	font-weight: bold;
+	font-size: 100%;
+	color: #84469C;
+}
+
+/***********************************************/
+/* Components                                  */
+/***********************************************/
+
+#siteName{
+	margin: 0;
+	padding: 0 0 0 10px;
+}
+
+
+/************* #globalNav styles **************/
+/* globalNav, see also svmenu.css */
+
+#globalNav{
+	padding: 0px 0px 0px 10px;
+	border-top: 2px solid #7b51ae;	/*7b51ae 84469C;*/
+	border-bottom: 2px solid #7b51ae;	/*7b51ae 84469C;*/
+	color: #FFFFFF;
+	background-color: #6b3999;	/*991bcc*/
+}
+
+/*************** #pageName styles **************/
+
+#pageName{
+	margin: 2px;
+	padding: 0px 0px 0px 10px;
+}
+
+/************* #breadCrumb styles *************/
+
+#breadCrumb{
+	font-size: 70%;
+	padding: 10px 0px 10px 10px;
+	font-weight: bold;
+}
+
+
+.distribBar {
+	background-color: #E7DDEC;
+}
+
+.newsBar {
+	background-color: #E7DDEC;
+}
+
+.dividingLine {
+	background-color: #E7DDEC;
+	font-size: 0pt; 
+	height: 1px; 
+}
+
+.downloadBar {
+	background-color: #E7DDEC;
+}
+
+.downloadRequiredBar {
+	background-color: #FFDDEC;
+}
+
+.fieldRequired {
+	background-color: #D0F1D4;
+}
+
+.beta {
+	color: #FF0000;	/* red */
+}
+
+.customerComment {
+	color: #0000ff;				/* blue */
+}
+
+.hilite {
+	background-color: #D0F1D4;
+}
+
+/************** .basket styles *****************/
+
+.basketProductBar {
+	background-color: #E7DDEC;
+	vertical-align:top;
+}
+
+.basketButtonBar {
+	background-color: #FFFFFF;
+}
+
+/************** .story styles *****************/
+
+.story{
+	clear: both;
+	padding: 20px;
+	font-size: 100%;	/* was 80% */
+}
+
+.top_story{
+	clear: both;
+	padding: 20px 20px 0px 20px;
+	font-size: 100%;	/* was 80% */
+	//background-color: blue;
+}
+.basket_story{
+	clear: both;
+	padding: 0px 0px 0px 40px;
+	font-size: 100%;	/* was 80% */
+}
+.story p{
+	padding: 0px 0px 0px 0px;	/* was 0px 0px 10px 0px; */
+}
+
+.story50pcRight{
+    /*valign: top;*/
+    width: 50%;
+	padding: 20px;
+	font-size: 100%;	/* was 80% */
+}
+
+.story50pcRight p{
+	padding: 0px 0px 0px 0px;	/* was 0px 0px 10px 0px; */
+}
+
+.story50pcLeft{
+	/*valign: top;*/
+    width: 50%;
+	padding: 20px;
+	font-size: 100%;	/* was 80% */
+}
+
+.story50pcLeft p{
+	padding: 0px 0px 0px 0px;	/* was 0px 0px 10px 0px; */
+}
+
+/************* #siteInfo styles ***************/
+
+#siteInfo{
+	clear: both;
+	margin: 10px;
+	border: 1px solid #6b3999;
+	font-size: 75%;
+	color: #6b3999;
+	padding: 10px 10px 10px 10px;
+	xbackground-color: #E0F1E4;
+	background-color: #E7DDEC;
+}
+
+
+/*********** #navBar link styles ***********/
+
+#navBar ul a:link, #navBar ul a:visited {display: block;}
+#navBar ul { margin: 0; padding: 0;}
+
+/* hack to fix IE/Win's broken rendering of block-level anchors in lists */
+#navBar li {
+	padding: 2px;
+	margin: 2px;
+}
+
+/*********** #sectionLinks styles ***********/
+
+#sectionLinks{
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+	border-bottom: 1px solid #6b3999;
+	font-size: 90%;
+}
+
+#sectionLinks h3{
+	padding: 10px 0px 2px 10px;
+}
+
+#sectionLinks a {
+	display: block;
+	border-top: 1px solid #cccccc;
+	padding: 2px 0px 2px 10px;
+}
+
+#sectionLinks a:hover{
+	background-color: #E7DDEC;
+}
+
+
+/*********** .relatedLinks styles ***********/
+
+.relatedLinks{
+	position: relative;
+	margin: 0px;
+	padding: 0px 0px 5px 10px;
+	font-size: 90%;
+	background-color: #E0F1E4;	/* D0F1D4 */
+}
+
+.relatedLinks h3{
+	padding: 10px 0px 2px 0px;
+}
+
+.relatedLinks a:link,
+.relatedLinks a:visited {
+	display: block; 
+}
+
+.relatedLinksDeveloper{
+	position: relative;
+	margin: 0px;
+	padding: 0px 0px 5px 10px;
+	font-size: 90%;
+	background-color: #EEE7F1;
+}
+
+.relatedLinksDeveloper h3{
+	padding: 10px 0px 2px 0px;
+}
+
+.relatedLinksDeveloper a:link,
+.relatedLinksDeveloper a:visited {
+	display: block; 
+}
+
+/************** #headlines styles **************/
+
+#headlines{
+	margin: 0px;
+	padding: 10px 0px 20px 10px;
+	font-size: 80%;
+}
+
+#basket_headlines{
+	margin: 0px;
+	padding: 10px 0px 0px 10px;
+	font-size: 80%;
+	float:right;
+	width: 18%;
+
+}
+
+#testimonial{
+	margin: 0px;
+	padding: 10px 0px 0px 10px;
+	font-size: 80%;
+}
+
+#headlines p{
+	padding: 5px 0px 5px 0px;
+}
+
+#testimonial p{
+	padding: 0px 10px 0px 0px;
+}
+
+.listmenu {
+	font-family: Arial;/*Georgia, Verdana, Arial, Tahoma;*/
+	font-size: 11px;
+	font-weight: normal;
+	color: #333333;
+	background-color: #EEE7F1;
+}
+.hr {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #84469C;
+}
+.eightypc {
+	font-size: 80%;
+}
+.basketSaveBold {
+	font-size: 80%;
+	font-weight: bold;
+}
+.swregNotice {
+	font-size: 80%;
+	font-weight: bold;
+}
+.redtxt {
+	color: #FF0000;
+}
+.popuptxt {
+
+	clear: both;
+	padding: 10px;
+	font-size: 80%;
+}
+
+#beta {
+	color: #FF0000;
+}
+
+.betatxt {
+	clear: both;
+	padding: 20px;
+	font-size: 90%;
+	background-color: #EEE7F1;
+}
+
+.subtleHilight {
+	background-color: #eeeeee;
+}
