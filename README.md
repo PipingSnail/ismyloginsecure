@@ -6,7 +6,7 @@ IsMyLoginSecure is a tool to test that a page linking to a https login page is a
 
 IsMyLoginSecure started life as a way to automate the checking of various websites to check that the page linking to a login page was https and not http, to prevent man-in-the-middle attacks.
 
-It all started when Liam Blizard noticed Natwest's http pages were linking to their https login page. Then myself and Troy Hunt, Scott Helme and many other people caused a lot of fuss and we got in the national press. Not that that was the intent.
+It all started when Liam Blizard noticed Natwest's http pages were linking to their https login page. Then myself (Stephen Kellett) and Troy Hunt, Scott Helme and many other people caused a lot of fuss and we got in the national press. Not that that was the intent.
 
 I then spent some time manually curating a list of banks, and after that lists of many types of organisations holding financial or health data, and whether their login pages were secure against man-in-the-middle attacks.
 
@@ -19,3 +19,7 @@ and improved the usability so that if anyone wants to use this to run simple tes
 All blog articles about the security (or lack of) of various organisations that was on Software Verify's website is now on a dedicated website [ismyloginsecure](https://www.ismyloginsecure.com), as is a downloadable binary for those wishing to execute without building.
 
 Correspondence: <ismyloginsecure@sprezzaturra.com>
+
+# Disclaimer
+
+I've never open sourced any of our code before. It's possible I may have done something wrong. If so, please drop me a line at the above email address to discuss that.
