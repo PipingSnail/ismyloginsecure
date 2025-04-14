@@ -3,4 +3,8 @@
   <PropertyGroup>
     <ReferencePath>D:\om\c\isMyLoginSecure\isMyLoginSecure\bin\Release\</ReferencePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <StartWorkingDirectory>
+    </StartWorkingDirectory>
+  </PropertyGroup>
 </Project>

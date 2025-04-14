@@ -58,7 +58,7 @@ namespace isMyLoginSecureDesktopDemo
             this.label4 = new System.Windows.Forms.Label();
             this.linkLabelOpenSource = new System.Windows.Forms.LinkLabel();
             this.label5 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabelisMyLoginSecure = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxLicence = new System.Windows.Forms.TextBox();
@@ -95,19 +95,19 @@ namespace isMyLoginSecureDesktopDemo
             // buttonClose
             // 
             this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonClose.Location = new System.Drawing.Point(367, 604);
+            this.buttonClose.Location = new System.Drawing.Point(367, 624);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 3;
             this.buttonClose.Text = "Close";
             this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.button1_Click);
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
             // labelOpenSource
             // 
             this.labelOpenSource.AutoSize = true;
             this.labelOpenSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOpenSource.Location = new System.Drawing.Point(13, 402);
+            this.labelOpenSource.Location = new System.Drawing.Point(13, 422);
             this.labelOpenSource.Name = "labelOpenSource";
             this.labelOpenSource.Size = new System.Drawing.Size(81, 13);
             this.labelOpenSource.TabIndex = 4;
@@ -116,7 +116,7 @@ namespace isMyLoginSecureDesktopDemo
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 431);
+            this.label2.Location = new System.Drawing.Point(13, 451);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(145, 13);
             this.label2.TabIndex = 5;
@@ -125,7 +125,7 @@ namespace isMyLoginSecureDesktopDemo
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 460);
+            this.label4.Location = new System.Drawing.Point(14, 480);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(214, 13);
             this.label4.TabIndex = 6;
@@ -134,37 +134,39 @@ namespace isMyLoginSecureDesktopDemo
             // linkLabelOpenSource
             // 
             this.linkLabelOpenSource.AutoSize = true;
-            this.linkLabelOpenSource.Location = new System.Drawing.Point(16, 489);
+            this.linkLabelOpenSource.Location = new System.Drawing.Point(16, 509);
             this.linkLabelOpenSource.Name = "linkLabelOpenSource";
             this.linkLabelOpenSource.Size = new System.Drawing.Size(179, 13);
             this.linkLabelOpenSource.TabIndex = 7;
             this.linkLabelOpenSource.TabStop = true;
             this.linkLabelOpenSource.Text = "https://opensource.org/license/MIT";
+            this.linkLabelOpenSource.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelOpenSource_LinkClicked);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 518);
+            this.label5.Location = new System.Drawing.Point(16, 538);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(145, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Open Source Repository";
             // 
-            // linkLabel1
+            // linkLabelisMyLoginSecure
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(16, 576);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(231, 13);
-            this.linkLabel1.TabIndex = 10;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://github.com/PipingSnail/ismyloginsecure";
+            this.linkLabelisMyLoginSecure.AutoSize = true;
+            this.linkLabelisMyLoginSecure.Location = new System.Drawing.Point(16, 596);
+            this.linkLabelisMyLoginSecure.Name = "linkLabelisMyLoginSecure";
+            this.linkLabelisMyLoginSecure.Size = new System.Drawing.Size(231, 13);
+            this.linkLabelisMyLoginSecure.TabIndex = 10;
+            this.linkLabelisMyLoginSecure.TabStop = true;
+            this.linkLabelisMyLoginSecure.Text = "https://github.com/PipingSnail/ismyloginsecure";
+            this.linkLabelisMyLoginSecure.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelisMyLoginSecure_LinkClicked);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 547);
+            this.label6.Location = new System.Drawing.Point(13, 567);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(177, 13);
             this.label6.TabIndex = 9;
@@ -185,7 +187,7 @@ namespace isMyLoginSecureDesktopDemo
             this.textBoxLicence.Multiline = true;
             this.textBoxLicence.Name = "textBoxLicence";
             this.textBoxLicence.ReadOnly = true;
-            this.textBoxLicence.Size = new System.Drawing.Size(427, 259);
+            this.textBoxLicence.Size = new System.Drawing.Size(427, 281);
             this.textBoxLicence.TabIndex = 12;
             // 
             // LicenceDialog
@@ -194,10 +196,10 @@ namespace isMyLoginSecureDesktopDemo
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonClose;
-            this.ClientSize = new System.Drawing.Size(459, 641);
+            this.ClientSize = new System.Drawing.Size(459, 661);
             this.Controls.Add(this.textBoxLicence);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.linkLabelisMyLoginSecure);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.linkLabelOpenSource);
@@ -227,7 +229,7 @@ namespace isMyLoginSecureDesktopDemo
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkLabelOpenSource;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabelisMyLoginSecure;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxLicence;
