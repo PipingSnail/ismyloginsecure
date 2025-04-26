@@ -18,7 +18,7 @@ and improved the usability so that if anyone wants to use this to run simple tes
 
 All blog articles about the security (or lack of) of various organisations that was on Software Verify's website is now on a dedicated website [ismyloginsecure](https://www.ismyloginsecure.com), as is a downloadable binary for those wishing to execute without building.
 
-Correspondence: <ismyloginsecure@sprezzaturra.com>
+Correspondence: <stephen@ismyloginsecure.com>
 
 # Disclaimer
 
