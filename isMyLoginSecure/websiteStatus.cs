@@ -1144,7 +1144,7 @@ namespace isMyLoginSecure
             String ctype = webResponse.Headers["content-type"];
             if (ctype != null)
             {
-                int ind = ctype.IndexOf("charset=");
+                int ind = ctype.IndexOf("charset=", StringComparison.CurrentCultureIgnoreCase);
                 if (ind != -1)
                 {
                     charset = ctype.Substring(ind + 8);
@@ -1183,15 +1183,30 @@ namespace isMyLoginSecure
 
                 if (meta != null)
                 {
-                    int start_ind = meta.IndexOf("charset=");
+                    int start_ind;
                     int end_ind = -1;
+                    string testCharset = "charset=\"";
+
+                    start_ind = meta.IndexOf(testCharset, StringComparison.CurrentCultureIgnoreCase);
+                    if (start_ind == -1)
+                    {
+                        // failed, try a shorter test
+
+                        testCharset = "charset=";
+                        start_ind = meta.IndexOf(testCharset, StringComparison.CurrentCultureIgnoreCase);
+                    }
+
                     if (start_ind != -1)
                     {
-                        end_ind = meta.IndexOf("\"", start_ind);
+                        // success, look for the end
+
+                        start_ind += testCharset.Length;
+                        end_ind = meta.IndexOf("\"", start_ind, StringComparison.CurrentCultureIgnoreCase);
                         if (end_ind != -1)
                         {
-                            int start = start_ind + 8;
-                            charset = meta.Substring(start, end_ind - start + 1);
+                            // get the substring and remove unwanted text
+
+                            charset = meta.Substring(start_ind, end_ind - start_ind + 1);
                             charset = charset.TrimEnd(new Char[] { '>', '"' });
                         }
                     }
@@ -1202,12 +1217,17 @@ namespace isMyLoginSecure
 
             Encoding e = null;
 
-            if (charset == null)
+            if (charset == null ||          // charset not specified
+                charset.Length == 0)        // charset empty, shouldn't happen
             {
+                // use the encoding of the response
+
                 e = Encoding.GetEncoding(webResponse.CharacterSet);
             }
             else
             {
+                // try to use the specified encoding
+
                 try
                 {
                     e = Encoding.GetEncoding(charset);
@@ -1508,6 +1528,15 @@ namespace isMyLoginSecure
                    status == securityStatus.SS_HTTP_QUERY_IN_PROGRESS ||
                    status == securityStatus.SS_HTTPS_QUERY_IN_PROGRESS;
 
+        }
+
+        /// <summary>
+        /// Determine if we the security grade is 100% or not
+        /// </summary>
+        /// <returns>Returns true if we 100% security headers, false otherwise.</returns>
+        public bool getIsSecurityHeaderGradePerfect()
+        {
+            return !securityHeader.hasImperfectSecurityHeaders();
         }
     }
 }

@@ -79,12 +79,19 @@ namespace isMyLoginSecureDesktopDemo
 
         // column headers so that we can easily modify the text that is displayed.
 
+        private ColumnHeader chID;
+        private ColumnHeader chName;
         private ColumnHeader chTransport;
         private ColumnHeader chSecure;
+        private ColumnHeader chProtocol;
         private ColumnHeader chRedirect;
         private ColumnHeader chSSLCertificate;
         private ColumnHeader chSecureContent;
         private ColumnHeader chSecurityHeaders;
+        private ColumnHeader chTestURL;
+        private ColumnHeader chActualURL;
+        private ColumnHeader chUserAgent;
+        private ColumnHeader chUserAgentString;
 
         private ListViewColumnSorter lvwColumnSorter;
 
@@ -103,19 +110,19 @@ namespace isMyLoginSecureDesktopDemo
 
             // setup the GUI
 
-            listViewResults.Columns.Add("ID", 60, HorizontalAlignment.Right);
-            listViewResults.Columns.Add("Name", 100, HorizontalAlignment.Left);
+            chID = listViewResults.Columns.Add("ID", 60, HorizontalAlignment.Right);
+            chName = listViewResults.Columns.Add("Name", 100, HorizontalAlignment.Left);
             chTransport = listViewResults.Columns.Add("Transport", 80, HorizontalAlignment.Left);
             chSecure = listViewResults.Columns.Add("Secure", -2, HorizontalAlignment.Left);
-            listViewResults.Columns.Add("Protocol", -2, HorizontalAlignment.Left);
+            chProtocol = listViewResults.Columns.Add("Protocol", -2, HorizontalAlignment.Left);
             chRedirect = listViewResults.Columns.Add("Redirect", -2, HorizontalAlignment.Left);
             chSSLCertificate = listViewResults.Columns.Add("SSL Certificate", -2, HorizontalAlignment.Left);
             chSecureContent = listViewResults.Columns.Add("Secure Content", -2, HorizontalAlignment.Left);
             chSecurityHeaders = listViewResults.Columns.Add("Security Headers", -2, HorizontalAlignment.Left);
-            listViewResults.Columns.Add("Test URL", -2, HorizontalAlignment.Left);
-            listViewResults.Columns.Add("Actual URL", -2, HorizontalAlignment.Left);
-            listViewResults.Columns.Add("User Agent", -2, HorizontalAlignment.Left);
-            listViewResults.Columns.Add("User Agent String", -2, HorizontalAlignment.Left);
+            chTestURL = listViewResults.Columns.Add("Test URL", -2, HorizontalAlignment.Left);
+            chActualURL = listViewResults.Columns.Add("Actual URL", -2, HorizontalAlignment.Left);
+            chUserAgent = listViewResults.Columns.Add("User Agent", -2, HorizontalAlignment.Left);
+            chUserAgentString = listViewResults.Columns.Add("User Agent String", -2, HorizontalAlignment.Left);
 
             listViewResults.SelectedIndexChanged += new EventHandler(ListViewResults_SelectedIndexChanged);
             listViewResults.ColumnClick += ListViewResults_ColumnClick;
@@ -124,6 +131,10 @@ namespace isMyLoginSecureDesktopDemo
 
             lvwColumnSorter = new ListViewColumnSorter();
             listViewResults.ListViewItemSorter = lvwColumnSorter;
+
+            // add context menu to list view
+
+            listViewResults.ContextMenuStrip = listViewResultsContextMenuStrip;
 
             urlProgressBar.Step = 0;
             urlProgressBar.Minimum = 0;
@@ -885,6 +896,27 @@ namespace isMyLoginSecureDesktopDemo
         }
 
         /// <summary>
+        /// Helper method to return the websiteStatus information connected to a give line in the display
+        /// </summary>
+        /// <param name="row">Row that we wish to inspect</param>
+        /// <returns>Website status.</returns>
+        private websiteStatus getStatusFromRow(int row)
+        {
+            if (listViewResults.Items.Count > 0 &&
+                row < listViewResults.Items.Count)
+            {
+                ListViewItem item = listViewResults.Items[row];
+
+                if (item != null)
+                {
+                    return (websiteStatus)item.Tag;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Event handler for clicking on an item in the list. This will cause the security header and security certificate
         /// details to be displayed in the appropriate text boxes below the list.
         /// </summary>
@@ -1100,11 +1132,12 @@ namespace isMyLoginSecureDesktopDemo
         /// <param name="sender"></param>
         /// <param name="e"></param>
         [STAThread]
-        private void exportAsHTMLToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exportAsHTMLToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveExportHTMLDialog = new SaveFileDialog();
             saveExportHTMLDialog.Filter = "HTML (*.html)|*.html";
             saveExportHTMLDialog.Title = "Export to HTML";
+            saveExportHTMLDialog.FileName = "testResults.html";
             saveExportHTMLDialog.ShowHelp = false;
             saveExportHTMLDialog.CreatePrompt = false;
             saveExportHTMLDialog.OverwritePrompt = false;   // prevent the "Do you want to overwrite this prompt?" from being shown - somehow when enabled this causes the app to hang. Weird.
@@ -1122,6 +1155,8 @@ namespace isMyLoginSecureDesktopDemo
                     using (System.IO.StreamWriter file =
                                new System.IO.StreamWriter(fs))
                     {
+                        // for each row in the list view, export it as HTML
+
                         int i, n;
 
                         n = listViewResults.Items.Count;
@@ -1141,11 +1176,12 @@ namespace isMyLoginSecureDesktopDemo
         /// <param name="sender"></param>
         /// <param name="e"></param>
         [STAThread]
-        private void exportAsXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exportAsXMLToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveExportXMLDialog = new SaveFileDialog();
             saveExportXMLDialog.Filter = "XML (*.xml)|*.xml";
             saveExportXMLDialog.Title = "Export to XML";
+            saveExportXMLDialog.FileName = "testResults.xml";
             saveExportXMLDialog.ShowHelp = false;
             saveExportXMLDialog.CreatePrompt = false;
             saveExportXMLDialog.OverwritePrompt = false;    // prevent the "Do you want to overwrite this prompt?" from being shown - somehow when enabled this causes the app to hang. Weird.
@@ -1163,6 +1199,8 @@ namespace isMyLoginSecureDesktopDemo
                     using (System.IO.StreamWriter file =
                                new System.IO.StreamWriter(fs))
                     {
+                        // for each row in the list view, export it as XML
+
                         int i, n;
 
                         n = listViewResults.Items.Count;
@@ -1280,6 +1318,8 @@ namespace isMyLoginSecureDesktopDemo
                     {
                         using (System.IO.StreamWriter file = new System.IO.StreamWriter(fs))
                         {
+                            // for each row in the list view, get the websiteStatus result for that row and save it
+
                             int i, n;
 
                             n = listViewResults.Items.Count;
@@ -1505,6 +1545,632 @@ namespace isMyLoginSecureDesktopDemo
             LicenceDialog dlg = new LicenceDialog();
 
             dlg.ShowDialog();
+        }
+
+        /// <summary>
+        /// Determine which row is selected. For use with context menu functions.
+        /// </summary>
+        /// <returns>Index of the first selected row, else -1</returns>
+        private int getSelectedRow()
+        {
+            int row = -1;
+
+            if (listViewResults.SelectedItems.Count > 0)
+            {
+                row = listViewResults.SelectedItems[0].Index;
+            }
+
+            return row;
+        }
+
+        /// <summary>
+        /// Event handler for Context Menu->Open Test Url...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>        
+        private void openTestUrlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int row = getSelectedRow();
+
+            if (row != -1)
+            {
+                string url = listViewResults.Items[row].SubItems[chTestURL.DisplayIndex].Text;
+
+                Process.Start(url);
+            }
+        }
+
+        /// <summary>
+        /// Get text from row/column in the data, with optional prefix and postfix for each cell.
+        /// </summary>
+        /// <param name="row">Row to query</param>
+        /// <param name="columns">Columns in each row to get text for</param>
+        /// <param name="prefix">Optional prefix to place before text from each row/column. Ignored if null</param>
+        /// <param name="postfix">Optional postfix to place after text from each row/column. Ignored if null</param>
+        /// <param name="dontAddPostFixToLastColumn">If true the postfix is ignored for the last column</param>
+        /// <returns>The text for the row/column plus optional prefix and postfix</returns>
+        private string getTextFromRowInResults(int row,
+                                               int[] columns,
+                                               string prefix,  // can be null,
+                                               string postfix, // can be null
+                                               bool dontAddPostFixToLastColumn)
+        {
+            string text;
+
+            text = "";
+            if (row != -1)
+            {
+                int c, numColumns;
+
+                numColumns = columns.Length;
+                for (c = 0; c < numColumns; c++)
+                {
+                    // add prefix
+
+                    if (prefix != null)
+                    {
+                        text += prefix;
+                    }
+
+                    // get the text for the row/column
+
+                    text += listViewResults.Items[row].SubItems[columns[c]].Text;
+
+                    // add postfix
+
+                    if (postfix != null)
+                    {
+                        if (dontAddPostFixToLastColumn)
+                        {
+                            if (c != numColumns - 1)
+                                text += postfix;
+                        }
+                        else
+                            text += postfix;
+                    }
+                }
+            }
+
+            return text;
+        }
+
+        /// <summary>
+        /// Get HTML link from row/column in the data, with optional prefix and postfix for each cell.
+        /// </summary>
+        /// <param name="row">Row to query</param>
+        /// <param name="columns">Columns in each row to get text for</param>
+        /// <param name="prefix">Optional prefix to place before text from each row/column. Ignored if null</param>
+        /// <param name="postfix">Optional postfix to place after text from each row/column. Ignored if null</param>
+        /// <returns>The text for the row/column plus optional prefix and postfix</returns>
+        private string getLinkFromRowInResults(int row,
+                                               int[] columns,
+                                               string prefix,
+                                               string postfix)
+        {
+            string text;
+
+            text = "";
+            if (row != -1)
+            {
+                int c, numColumns;
+
+                numColumns = columns.Length;
+                for (c = 0; c < numColumns; c++)
+                {
+                    // add prefix
+
+                    if (prefix != null)
+                    {
+                        text += prefix;
+                    }
+
+                    // open <a> tag
+
+                    text += "<a href=\"";
+                    text += listViewResults.Items[row].SubItems[columns[c]].Text;
+                    text += "\">";
+
+                    // the text inside the <a> tag
+
+                    text += listViewResults.Items[row].SubItems[columns[c]].Text;
+
+                    // close the <a> tag
+
+                    text += "</a>";
+
+                    // add postfix
+
+                    if (postfix != null)
+                    {
+                        text += postfix;
+                    }
+                }
+            }
+
+            return text;
+        }
+
+        /// <summary>
+        /// Event handler for Context Menu->Copy All
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>        
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int row = getSelectedRow();
+
+            if (row != -1)
+            {
+                string text;
+                int c, numColumns;
+                int[] columns;
+
+                // get indexes for all columns
+
+                numColumns = listViewResults.Columns.Count;
+                columns = new int[numColumns];
+                for (c = 0; c < numColumns; c++)
+                {
+                    columns[c] = c;
+                }
+
+                // get the text for all columns
+
+                text = getTextFromRowInResults(row, columns, null, ", ", true);
+                Clipboard.SetText(text);
+            }
+        }
+
+        /// <summary>
+        /// Event handler for Context Menu->Copy Security
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>        
+        private void copySecurityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int row = getSelectedRow();
+
+            if (row != -1)
+            {
+                string text;
+                int[] columns;
+                int c = 0;
+
+                columns = new int[10];
+
+                // get the indexes for specific columns
+
+                columns[c++] = chName.DisplayIndex;
+                columns[c++] = chTransport.DisplayIndex;
+                columns[c++] = chSecure.DisplayIndex;
+                columns[c++] = chProtocol.DisplayIndex;
+                columns[c++] = chRedirect.DisplayIndex;
+                columns[c++] = chSSLCertificate.DisplayIndex;
+                columns[c++] = chSecureContent.DisplayIndex;
+                columns[c++] = chSecurityHeaders.DisplayIndex;
+                columns[c++] = chTestURL.DisplayIndex;
+                columns[c++] = chActualURL.DisplayIndex;
+
+                // get text for each of the columns
+
+                text = getTextFromRowInResults(row, columns, null, ", ", true);
+                Clipboard.SetText(text);
+            }
+        }
+
+        /// <summary>
+        /// Event handler for Context Menu->Copy All As HTML
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>        
+        private void copyAllAsHTMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int row = getSelectedRow();
+
+            if (row != -1)
+            {
+                string text;
+                int c, numColumns;
+                int[] columns;
+
+                // get the indexes of all columns
+
+                numColumns = listViewResults.Columns.Count;
+                columns = new int[numColumns];
+                for (c = 0; c < numColumns; c++)
+                {
+                    columns[c] = c;
+                }
+
+                // get text for each of the columns
+
+                text = getTextFromRowInResults(row, columns, "<td>", "</td>", false);
+                Clipboard.SetText(text);
+            }
+        }
+
+        /// <summary>
+        /// Event handler for Context Menu->Copy Security As HTML
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>        
+        private void copySecurityAsHTMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int row = getSelectedRow();
+
+            if (row != -1)
+            {
+                string text;
+                int[] columns;
+                int c = 0;
+
+                columns = new int[10];
+
+                // get the indexes for specific columns
+
+                columns[c++] = chName.DisplayIndex;
+                columns[c++] = chTransport.DisplayIndex;
+                columns[c++] = chSecure.DisplayIndex;
+                columns[c++] = chProtocol.DisplayIndex;
+                columns[c++] = chRedirect.DisplayIndex;
+                columns[c++] = chSSLCertificate.DisplayIndex;
+                columns[c++] = chSecureContent.DisplayIndex;
+                columns[c++] = chSecurityHeaders.DisplayIndex;
+                columns[c++] = chTestURL.DisplayIndex;
+                columns[c++] = chActualURL.DisplayIndex;
+
+                // get text for each of the columns
+
+                text = getTextFromRowInResults(row, columns, "<td>", "</td>", false);
+                Clipboard.SetText(text);
+            }
+        }
+
+        /// <summary>
+        /// Event handler for File->Export->Export Certificate Errors as HTML...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>        
+        private void exportCertificateErrorsAsHTMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveExportHTMLDialog = new SaveFileDialog();
+            saveExportHTMLDialog.Filter = "HTML (*.html)|*.html";
+            saveExportHTMLDialog.Title = "Export to Security Certificate Errors to HTML";
+            saveExportHTMLDialog.FileName = "certificateErrors.html";
+            saveExportHTMLDialog.ShowHelp = false;
+            saveExportHTMLDialog.CreatePrompt = false;
+            saveExportHTMLDialog.OverwritePrompt = false;   // prevent the "Do you want to overwrite this prompt?" from being shown - somehow when enabled this causes the app to hang. Weird.
+            saveExportHTMLDialog.RestoreDirectory = true;
+            if (saveExportHTMLDialog.ShowDialog() == DialogResult.OK)
+            {
+                // If the file name is not an empty string open it for saving.  
+
+                if (saveExportHTMLDialog.FileName != "")
+                {
+                    System.IO.FileStream fs;
+
+                    fs = (System.IO.FileStream)saveExportHTMLDialog.OpenFile();
+
+                    using (System.IO.StreamWriter file =
+                               new System.IO.StreamWriter(fs))
+                    {
+                        // for each row in the list view, get the websiteStatus result for that row and process it
+
+                        int row, numRows;
+
+                        numRows = listViewResults.Items.Count;
+                        for (row = 0; row < numRows; row++)
+                        {
+                            websiteStatus ws;
+
+                            ws = getStatusFromRow(row);
+                            if (ws != null)
+                            {
+                                if (ws.getHasBadCertificate())
+                                {
+                                    // only report data if the certificate had problems
+
+                                    string text;
+                                    int[] columns;
+                                    int c = 0;
+
+                                    columns = new int[2];
+
+                                    // start row
+
+                                    text = "<tr>";
+
+                                    // name and Security Certificate status
+
+                                    columns[c++] = chName.DisplayIndex;
+                                    columns[c++] = chSSLCertificate.DisplayIndex;
+
+                                    text += getTextFromRowInResults(row, columns, "<td>", "</td>", false);
+
+                                    // URL
+
+                                    columns = new int[1];
+                                    columns[0] = chTestURL.DisplayIndex;
+                                    text += getLinkFromRowInResults(row, columns, "<td>", "</td>");
+
+                                    // end row
+
+                                    text += "</tr>";
+
+                                    file.WriteLine(text);
+                                }
+                            }
+                        }
+                    }
+                    fs.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event handler for File->Export->Export Insecure Content Errors as HTML...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>        
+        private void exportInsecureContentErrorsAsHTMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveExportHTMLDialog = new SaveFileDialog();
+            saveExportHTMLDialog.Filter = "HTML (*.html)|*.html";
+            saveExportHTMLDialog.Title = "Export to Insecure Content Errors to HTML";
+            saveExportHTMLDialog.FileName = "insecureContentErrors.html";
+            saveExportHTMLDialog.ShowHelp = false;
+            saveExportHTMLDialog.CreatePrompt = false;
+            saveExportHTMLDialog.OverwritePrompt = false;   // prevent the "Do you want to overwrite this prompt?" from being shown - somehow when enabled this causes the app to hang. Weird.
+            saveExportHTMLDialog.RestoreDirectory = true;
+            if (saveExportHTMLDialog.ShowDialog() == DialogResult.OK)
+            {
+                // If the file name is not an empty string open it for saving.  
+
+                if (saveExportHTMLDialog.FileName != "")
+                {
+                    System.IO.FileStream fs;
+
+                    fs = (System.IO.FileStream)saveExportHTMLDialog.OpenFile();
+
+                    using (System.IO.StreamWriter file =
+                               new System.IO.StreamWriter(fs))
+                    {
+                        // for each row in the list view, get the websiteStatus result for that row and process it
+
+                        int row, numRows;
+
+                        numRows = listViewResults.Items.Count;
+                        for (row = 0; row < numRows; row++)
+                        {
+                            websiteStatus ws;
+
+                            ws = getStatusFromRow(row);
+                            if (ws != null)
+                            {
+                                if (ws.getNumMixedContentURLs() > 0)
+                                {
+                                    // only report if there were some insecure URLs
+
+                                    string text;
+                                    int[] columns;
+
+                                    // start row
+
+                                    text = "<tr>";
+
+                                    // name
+
+                                    columns = new int[1];
+
+                                    columns[0] = chName.DisplayIndex;
+                                    text += getTextFromRowInResults(row, columns, "<td>", "</td>", false);
+
+                                    // URL
+
+                                    columns[0] = chTestURL.DisplayIndex;
+                                    text += getLinkFromRowInResults(row, columns, "<td>", "</td>");
+
+                                    // last table cell lists all insecure content URLs,
+                                    // each one separated by a line break <br>
+
+                                    int n, i;
+
+                                    text += "<td>";
+                                    n = ws.getNumMixedContentURLs();
+                                    for (i = 0; i < n; i++)
+                                    {
+                                        text += "<a href=\"";
+                                        text += ws.getMixedContentURL(i);
+                                        text += "\">";
+                                        text += ws.getMixedContentURL(i);
+                                        text += "</a>";
+
+                                        if (i < (n - 1))
+                                            text += "<br>";
+                                    }
+
+                                    text += "</td>";
+
+                                    // end of row
+
+                                    text += "</tr>";
+
+                                    file.WriteLine(text);
+                                }
+                            }
+                        }
+                    }
+                    fs.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event handler for File->Export->Export Security Headers as HTML...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>        
+        private void exportSecurityHeadersAsHTMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveExportHTMLDialog = new SaveFileDialog();
+            saveExportHTMLDialog.Filter = "HTML (*.html)|*.html";
+            saveExportHTMLDialog.Title = "Export to Security Header Errors to HTML";
+            saveExportHTMLDialog.FileName = "securityHeaderErrors.html";
+            saveExportHTMLDialog.ShowHelp = false;
+            saveExportHTMLDialog.CreatePrompt = false;
+            saveExportHTMLDialog.OverwritePrompt = false;   // prevent the "Do you want to overwrite this prompt?" from being shown - somehow when enabled this causes the app to hang. Weird.
+            saveExportHTMLDialog.RestoreDirectory = true;
+            if (saveExportHTMLDialog.ShowDialog() == DialogResult.OK)
+            {
+                // If the file name is not an empty string open it for saving.  
+
+                if (saveExportHTMLDialog.FileName != "")
+                {
+                    System.IO.FileStream fs;
+
+                    fs = (System.IO.FileStream)saveExportHTMLDialog.OpenFile();
+
+                    using (System.IO.StreamWriter file =
+                               new System.IO.StreamWriter(fs))
+                    {
+                        // for each row in the list view, get the websiteStatus result for that row and process it
+
+                        int row, numRows;
+
+                        numRows = listViewResults.Items.Count;
+                        for (row = 0; row < numRows; row++)
+                        {
+                            websiteStatus ws;
+
+                            ws = getStatusFromRow(row);
+                            if (ws != null)
+                            {
+                                if (!ws.getFetchFailed() &&
+                                    !ws.getIsSecurityHeaderGradePerfect())
+                                {
+                                    // only report if the fetch succeeded and the security header grade isn't perfect (not 100%)
+
+                                    string text;
+                                    int[] columns;
+                                    int c = 0;
+
+                                    columns = new int[1];
+
+                                    // start row
+
+                                    text = "<tr>";
+
+                                    // Name
+
+                                    columns[c++] = chName.DisplayIndex;
+                                    text += getTextFromRowInResults(row, columns, "<td>", "</td>", false);
+
+                                    // security header grade
+
+                                    text += "<td>";
+                                    text += ws.getSecurityHeaderGrade();
+                                    text += "</td>";
+
+                                    // URL
+
+                                    columns = new int[1];
+
+                                    columns[0] = chTestURL.DisplayIndex;
+                                    text += getLinkFromRowInResults(row, columns, "<td>", "</td>");
+
+                                    // end row
+
+                                    text += "</tr>";
+
+                                    file.WriteLine(text);
+                                }
+                            }
+                        }
+                    }
+                    fs.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event handler for File->Export->Export Failure to query banks as HTML...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>        
+        private void exportFailureToQueryBanksAsHTMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveExportHTMLDialog = new SaveFileDialog();
+            saveExportHTMLDialog.Filter = "HTML (*.html)|*.html";
+            saveExportHTMLDialog.Title = "Export to Failure to Query to HTML";
+            saveExportHTMLDialog.FileName = "failedToQueryErrors.html";
+            saveExportHTMLDialog.ShowHelp = false;
+            saveExportHTMLDialog.CreatePrompt = false;
+            saveExportHTMLDialog.OverwritePrompt = false;   // prevent the "Do you want to overwrite this prompt?" from being shown - somehow when enabled this causes the app to hang. Weird.
+            saveExportHTMLDialog.RestoreDirectory = true;
+            if (saveExportHTMLDialog.ShowDialog() == DialogResult.OK)
+            {
+                // If the file name is not an empty string open it for saving.  
+
+                if (saveExportHTMLDialog.FileName != "")
+                {
+                    System.IO.FileStream fs;
+
+                    fs = (System.IO.FileStream)saveExportHTMLDialog.OpenFile();
+
+                    using (System.IO.StreamWriter file =
+                               new System.IO.StreamWriter(fs))
+                    {
+                        // for each row in the list view, get the websiteStatus result for that row and process it
+
+                        int row, numRows;
+
+                        numRows = listViewResults.Items.Count;
+                        for (row = 0; row < numRows; row++)
+                        {
+                            websiteStatus ws;
+
+                            ws = getStatusFromRow(row);
+                            if (ws != null)
+                            {
+                                if (ws.getFetchFailed())
+                                {
+                                    // only report if unable to fetch the web page
+
+                                    string text;
+                                    int[] columns;
+                                    int c = 0;
+
+                                    columns = new int[2];
+
+                                    // start row
+
+                                    text = "<tr>";
+
+                                    // Name and Transport (fetch error)
+
+                                    columns[c++] = chName.DisplayIndex;
+                                    columns[c++] = chTransport.DisplayIndex;
+
+                                    text += getTextFromRowInResults(row, columns, "<td>", "</td>", false);
+
+                                    // URL
+
+                                    columns = new int[1];
+                                    columns[0] = chTestURL.DisplayIndex;
+                                    text += getLinkFromRowInResults(row, columns, "<td>", "</td>");
+
+                                    // end row
+
+                                    text += "</tr>";
+
+                                    file.WriteLine(text);
+                                }
+                            }
+                        }
+                    }
+                    fs.Close();
+                }
+            }
         }
     }
 }

@@ -59,8 +59,14 @@ namespace isMyLoginSecureDesktopDemo
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.exportAsHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportAsXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportAsHTMLToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportCertificateErrorsAsHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportInsecureContentErrorsAsHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSecurityHeadersAsHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportFailureToQueryBanksAsHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportAsXMLToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userAgentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,18 +86,25 @@ namespace isMyLoginSecureDesktopDemo
             this.textBoxMixedContentURLs = new System.Windows.Forms.TextBox();
             this.urlProgressBar = new System.Windows.Forms.ProgressBar();
             this.timerGraphicsRefresh = new System.Windows.Forms.Timer(this.components);
-            this.listViewResults = new isMyLoginSecureDesktopDemo.URLListView();
             this.tableLayoutPanelTop = new System.Windows.Forms.TableLayoutPanel();
+            this.listViewResults = new isMyLoginSecureDesktopDemo.URLListView();
             this.tableLayoutPanelBottom = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelBottomLeft = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelBottomMiddle = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelBottomRight = new System.Windows.Forms.TableLayoutPanel();
+            this.listViewResultsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openTestUrlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copySecurityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyAllAsHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copySecurityAsHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanelTop.SuspendLayout();
             this.tableLayoutPanelBottom.SuspendLayout();
             this.tableLayoutPanelBottomLeft.SuspendLayout();
             this.tableLayoutPanelBottomMiddle.SuspendLayout();
             this.tableLayoutPanelBottomRight.SuspendLayout();
+            this.listViewResultsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -117,8 +130,7 @@ namespace isMyLoginSecureDesktopDemo
             this.loadToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.toolStripMenuItem4,
-            this.exportAsHTMLToolStripMenuItem,
-            this.exportAsXMLToolStripMenuItem,
+            this.exportToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -128,57 +140,104 @@ namespace isMyLoginSecureDesktopDemo
             // clearResultsToolStripMenuItem
             // 
             this.clearResultsToolStripMenuItem.Name = "clearResultsToolStripMenuItem";
-            this.clearResultsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.clearResultsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearResultsToolStripMenuItem.Text = "&Clear Results";
             this.clearResultsToolStripMenuItem.Click += new System.EventHandler(this.clearResultsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(163, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadToolStripMenuItem.Text = "&Load...";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "&Save...";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(163, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
             // 
-            // exportAsHTMLToolStripMenuItem
+            // exportToolStripMenuItem
             // 
-            this.exportAsHTMLToolStripMenuItem.Name = "exportAsHTMLToolStripMenuItem";
-            this.exportAsHTMLToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.exportAsHTMLToolStripMenuItem.Text = "Export as &HTML...";
-            this.exportAsHTMLToolStripMenuItem.Click += new System.EventHandler(this.exportAsHTMLToolStripMenuItem_Click);
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportAsHTMLToolStripMenuItem1,
+            this.exportCertificateErrorsAsHTMLToolStripMenuItem,
+            this.exportInsecureContentErrorsAsHTMLToolStripMenuItem,
+            this.exportSecurityHeadersAsHTMLToolStripMenuItem,
+            this.exportFailureToQueryBanksAsHTMLToolStripMenuItem,
+            this.toolStripMenuItem5,
+            this.exportAsXMLToolStripMenuItem1});
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToolStripMenuItem.Text = "Export";
             // 
-            // exportAsXMLToolStripMenuItem
+            // exportAsHTMLToolStripMenuItem1
             // 
-            this.exportAsXMLToolStripMenuItem.Name = "exportAsXMLToolStripMenuItem";
-            this.exportAsXMLToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.exportAsXMLToolStripMenuItem.Text = "Export as &XML...";
-            this.exportAsXMLToolStripMenuItem.Click += new System.EventHandler(this.exportAsXMLToolStripMenuItem_Click);
+            this.exportAsHTMLToolStripMenuItem1.Name = "exportAsHTMLToolStripMenuItem1";
+            this.exportAsHTMLToolStripMenuItem1.Size = new System.Drawing.Size(292, 22);
+            this.exportAsHTMLToolStripMenuItem1.Text = "Export as &HTML...";
+            this.exportAsHTMLToolStripMenuItem1.Click += new System.EventHandler(this.exportAsHTMLToolStripMenuItem1_Click);
+            // 
+            // exportCertificateErrorsAsHTMLToolStripMenuItem
+            // 
+            this.exportCertificateErrorsAsHTMLToolStripMenuItem.Name = "exportCertificateErrorsAsHTMLToolStripMenuItem";
+            this.exportCertificateErrorsAsHTMLToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.exportCertificateErrorsAsHTMLToolStripMenuItem.Text = "Export Certificate Errors as HTML...";
+            this.exportCertificateErrorsAsHTMLToolStripMenuItem.Click += new System.EventHandler(this.exportCertificateErrorsAsHTMLToolStripMenuItem_Click);
+            // 
+            // exportInsecureContentErrorsAsHTMLToolStripMenuItem
+            // 
+            this.exportInsecureContentErrorsAsHTMLToolStripMenuItem.Name = "exportInsecureContentErrorsAsHTMLToolStripMenuItem";
+            this.exportInsecureContentErrorsAsHTMLToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.exportInsecureContentErrorsAsHTMLToolStripMenuItem.Text = "Export Insecure Content Errors as HTML...";
+            this.exportInsecureContentErrorsAsHTMLToolStripMenuItem.Click += new System.EventHandler(this.exportInsecureContentErrorsAsHTMLToolStripMenuItem_Click);
+            // 
+            // exportSecurityHeadersAsHTMLToolStripMenuItem
+            // 
+            this.exportSecurityHeadersAsHTMLToolStripMenuItem.Name = "exportSecurityHeadersAsHTMLToolStripMenuItem";
+            this.exportSecurityHeadersAsHTMLToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.exportSecurityHeadersAsHTMLToolStripMenuItem.Text = "Export Security Headers as HTML...";
+            this.exportSecurityHeadersAsHTMLToolStripMenuItem.Click += new System.EventHandler(this.exportSecurityHeadersAsHTMLToolStripMenuItem_Click);
+            // 
+            // exportFailureToQueryBanksAsHTMLToolStripMenuItem
+            // 
+            this.exportFailureToQueryBanksAsHTMLToolStripMenuItem.Name = "exportFailureToQueryBanksAsHTMLToolStripMenuItem";
+            this.exportFailureToQueryBanksAsHTMLToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.exportFailureToQueryBanksAsHTMLToolStripMenuItem.Text = "Export Failure to query banks as HTML...";
+            this.exportFailureToQueryBanksAsHTMLToolStripMenuItem.Click += new System.EventHandler(this.exportFailureToQueryBanksAsHTMLToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(289, 6);
+            // 
+            // exportAsXMLToolStripMenuItem1
+            // 
+            this.exportAsXMLToolStripMenuItem1.Name = "exportAsXMLToolStripMenuItem1";
+            this.exportAsXMLToolStripMenuItem1.Size = new System.Drawing.Size(292, 22);
+            this.exportAsXMLToolStripMenuItem1.Text = "Export as XML...";
+            this.exportAsXMLToolStripMenuItem1.Click += new System.EventHandler(this.exportAsXMLToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(163, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
@@ -324,19 +383,6 @@ namespace isMyLoginSecureDesktopDemo
             this.urlProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.urlProgressBar.TabIndex = 15;
             // 
-            // listViewResults
-            // 
-            this.listViewResults.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewResults.FullRowSelect = true;
-            this.listViewResults.HideSelection = false;
-            this.listViewResults.Location = new System.Drawing.Point(3, 3);
-            this.listViewResults.Name = "listViewResults";
-            this.listViewResults.OwnerDraw = true;
-            this.listViewResults.Size = new System.Drawing.Size(1118, 272);
-            this.listViewResults.TabIndex = 3;
-            this.listViewResults.UseCompatibleStateImageBehavior = false;
-            this.listViewResults.View = System.Windows.Forms.View.Details;
-            // 
             // tableLayoutPanelTop
             // 
             this.tableLayoutPanelTop.AutoSize = true;
@@ -353,6 +399,19 @@ namespace isMyLoginSecureDesktopDemo
             this.tableLayoutPanelTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.66667F));
             this.tableLayoutPanelTop.Size = new System.Drawing.Size(1124, 477);
             this.tableLayoutPanelTop.TabIndex = 16;
+            // 
+            // listViewResults
+            // 
+            this.listViewResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewResults.FullRowSelect = true;
+            this.listViewResults.HideSelection = false;
+            this.listViewResults.Location = new System.Drawing.Point(3, 3);
+            this.listViewResults.Name = "listViewResults";
+            this.listViewResults.OwnerDraw = true;
+            this.listViewResults.Size = new System.Drawing.Size(1118, 272);
+            this.listViewResults.TabIndex = 3;
+            this.listViewResults.UseCompatibleStateImageBehavior = false;
+            this.listViewResults.View = System.Windows.Forms.View.Details;
             // 
             // tableLayoutPanelBottom
             // 
@@ -416,6 +475,52 @@ namespace isMyLoginSecureDesktopDemo
             this.tableLayoutPanelBottomRight.Size = new System.Drawing.Size(368, 187);
             this.tableLayoutPanelBottomRight.TabIndex = 2;
             // 
+            // listViewResultsContextMenuStrip
+            // 
+            this.listViewResultsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openTestUrlToolStripMenuItem,
+            this.copyToolStripMenuItem,
+            this.copySecurityToolStripMenuItem,
+            this.copyAllAsHTMLToolStripMenuItem,
+            this.copySecurityAsHTMLToolStripMenuItem});
+            this.listViewResultsContextMenuStrip.Name = "listViewResultsContextMenuStrip";
+            this.listViewResultsContextMenuStrip.Size = new System.Drawing.Size(199, 114);
+            // 
+            // openTestUrlToolStripMenuItem
+            // 
+            this.openTestUrlToolStripMenuItem.Name = "openTestUrlToolStripMenuItem";
+            this.openTestUrlToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.openTestUrlToolStripMenuItem.Text = "Open Test Url...";
+            this.openTestUrlToolStripMenuItem.Click += new System.EventHandler(this.openTestUrlToolStripMenuItem_Click);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.copyToolStripMenuItem.Text = "Copy All";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // copySecurityToolStripMenuItem
+            // 
+            this.copySecurityToolStripMenuItem.Name = "copySecurityToolStripMenuItem";
+            this.copySecurityToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.copySecurityToolStripMenuItem.Text = "Copy Security";
+            this.copySecurityToolStripMenuItem.Click += new System.EventHandler(this.copySecurityToolStripMenuItem_Click);
+            // 
+            // copyAllAsHTMLToolStripMenuItem
+            // 
+            this.copyAllAsHTMLToolStripMenuItem.Name = "copyAllAsHTMLToolStripMenuItem";
+            this.copyAllAsHTMLToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.copyAllAsHTMLToolStripMenuItem.Text = "Copy All As HTML";
+            this.copyAllAsHTMLToolStripMenuItem.Click += new System.EventHandler(this.copyAllAsHTMLToolStripMenuItem_Click);
+            // 
+            // copySecurityAsHTMLToolStripMenuItem
+            // 
+            this.copySecurityAsHTMLToolStripMenuItem.Name = "copySecurityAsHTMLToolStripMenuItem";
+            this.copySecurityAsHTMLToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.copySecurityAsHTMLToolStripMenuItem.Text = "Copy Security As HTML";
+            this.copySecurityAsHTMLToolStripMenuItem.Click += new System.EventHandler(this.copySecurityAsHTMLToolStripMenuItem_Click);
+            // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -439,6 +544,7 @@ namespace isMyLoginSecureDesktopDemo
             this.tableLayoutPanelBottomMiddle.PerformLayout();
             this.tableLayoutPanelBottomRight.ResumeLayout(false);
             this.tableLayoutPanelBottomRight.PerformLayout();
+            this.listViewResultsContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -455,8 +561,6 @@ namespace isMyLoginSecureDesktopDemo
         private ToolStripMenuItem aURLToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripMenuItem clearResultsToolStripMenuItem;
-        private ToolStripMenuItem exportAsHTMLToolStripMenuItem;
-        private ToolStripMenuItem exportAsXMLToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem3;
         private ToolStripSeparator toolStripMenuItem1;
         private TextBox textBoxSecurityHeader;
@@ -480,6 +584,20 @@ namespace isMyLoginSecureDesktopDemo
         private TableLayoutPanel tableLayoutPanelBottomMiddle;
         private TableLayoutPanel tableLayoutPanelBottomRight;
         private ToolStripMenuItem softwareLicenceToolStripMenuItem;
+        private ContextMenuStrip listViewResultsContextMenuStrip;
+        private ToolStripMenuItem openTestUrlToolStripMenuItem;
+        private ToolStripMenuItem copyToolStripMenuItem;
+        private ToolStripMenuItem copySecurityToolStripMenuItem;
+        private ToolStripMenuItem copyAllAsHTMLToolStripMenuItem;
+        private ToolStripMenuItem copySecurityAsHTMLToolStripMenuItem;
+        private ToolStripMenuItem exportToolStripMenuItem;
+        private ToolStripMenuItem exportAsHTMLToolStripMenuItem1;
+        private ToolStripMenuItem exportCertificateErrorsAsHTMLToolStripMenuItem;
+        private ToolStripMenuItem exportInsecureContentErrorsAsHTMLToolStripMenuItem;
+        private ToolStripMenuItem exportSecurityHeadersAsHTMLToolStripMenuItem;
+        private ToolStripMenuItem exportFailureToQueryBanksAsHTMLToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem5;
+        private ToolStripMenuItem exportAsXMLToolStripMenuItem1;
     }
 }
 
