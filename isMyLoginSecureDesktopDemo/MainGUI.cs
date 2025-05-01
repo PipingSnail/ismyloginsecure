@@ -130,6 +130,8 @@ namespace isMyLoginSecureDesktopDemo
             // ensure the list knows how to sort
 
             lvwColumnSorter = new ListViewColumnSorter();
+            lvwColumnSorter.ColumnID = chID.DisplayIndex;
+            lvwColumnSorter.ColumnSecurity = chSecurityHeaders.DisplayIndex;
             listViewResults.ListViewItemSorter = lvwColumnSorter;
 
             // add context menu to list view

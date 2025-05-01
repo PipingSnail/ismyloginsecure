@@ -27,6 +27,9 @@ namespace isMyLoginSecureDesktopDemo
         /// </summary>
         private CaseInsensitiveComparer ObjectCompare;
 
+        public int ColumnID { get;  set; }
+        public int ColumnSecurity { get; set; }
+
         /// <summary>
         /// Class constructor. Initializes various elements
         /// </summary>
@@ -58,16 +61,21 @@ namespace isMyLoginSecureDesktopDemo
             listviewY = (ListViewItem)y;
 
             // Compare the two items
-            if (ColumnToSort == 0)
+
+            if ((ColumnToSort == ColumnID) ||       // ID Column
+                (ColumnToSort == ColumnSecurity))   // Security Headers Column
             {
                 // integer sort, not text sort
 
+                string xs, ys;
                 int vx, vy;
 
                 vx = 0;
                 vy = 0;
-                Int32.TryParse(listviewX.Text, out vx);
-                Int32.TryParse(listviewY.Text, out vy);
+                xs = listviewX.SubItems[ColumnToSort].Text.Replace("%", "");
+                ys = listviewY.SubItems[ColumnToSort].Text.Replace("%", "");
+                Int32.TryParse(xs, out vx);
+                Int32.TryParse(ys, out vy);
                 compareResult = vx - vy;
             }
             else
