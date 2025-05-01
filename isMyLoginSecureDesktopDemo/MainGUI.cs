@@ -2069,6 +2069,20 @@ namespace isMyLoginSecureDesktopDemo
 
                                     text += "<td>";
                                     text += ws.getSecurityHeaderGrade();
+
+                                    // each missing security option
+
+                                    List<string> missingOptions;
+
+                                    missingOptions = ws.getMissingSecurityHeaderOptions();
+                                    if (missingOptions.Count > 0)
+                                    {
+                                        foreach (string option in missingOptions)
+                                        {
+                                            text += "<br>";
+                                            text += option;
+                                        }
+                                    }
                                     text += "</td>";
 
                                     // URL

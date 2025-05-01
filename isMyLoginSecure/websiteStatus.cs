@@ -1538,5 +1538,14 @@ namespace isMyLoginSecure
         {
             return !securityHeader.hasImperfectSecurityHeaders();
         }
+
+        /// <summary>
+        /// Get a list of all the missing security header options
+        /// </summary>
+        /// <returns>A list of the missing security header options.</returns>
+        public List<string> getMissingSecurityHeaderOptions()
+        {
+            return securityHeader.getMissingSecurityHeaderOptions();
+        }
     }
 }

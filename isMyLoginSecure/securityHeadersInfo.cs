@@ -19,6 +19,7 @@
 // The above licence is the MIT Licence. https://opensource.org/license/MIT
 
 using System;
+using System.Collections.Generic;
 
 namespace isMyLoginSecure
 {
@@ -218,6 +219,41 @@ namespace isMyLoginSecure
         public string getSecurityHeaderReferrerPolicy()
         {
             return securityHeaderReferrerPolicy;
+        }
+
+        /// <summary>
+        /// Get a list of all the missing security header options
+        /// </summary>
+        /// <returns>A list of the missing security header options.</returns>
+        public List<string> getMissingSecurityHeaderOptions()
+        {
+            List<string>    missing = new List<string>();
+
+            if (securityHeaderXContentTypeOptions == null ||
+                securityHeaderXContentTypeOptions.Length == 0)
+                missing.Add("X-Content-Type-Options");
+
+            if (securityHeaderXXSSProtection == null ||
+                securityHeaderXXSSProtection.Length == 0)
+                missing.Add("X-XSS-Protection");
+
+            if (securityHeaderXFrameOptions == null ||
+                securityHeaderXFrameOptions.Length == 0)
+                missing.Add("X-Frame-Options");
+
+            if (securityHeaderStrictTransportSecurity == null ||
+                securityHeaderStrictTransportSecurity.Length == 0)
+                missing.Add("Strict-Transport-Security");
+                    
+            if (securityHeaderContentSecurityPolicy == null ||
+                securityHeaderContentSecurityPolicy.Length == 0)
+                missing.Add("Content-Security-Policy");
+                    
+            if (securityHeaderReferrerPolicy == null ||
+                securityHeaderReferrerPolicy.Length == 0)
+                missing.Add("Referrer-Policy");
+
+            return missing;
         }
     }
 }
