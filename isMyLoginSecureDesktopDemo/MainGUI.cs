@@ -559,14 +559,16 @@ namespace isMyLoginSecureDesktopDemo
                 failedToFetchCount++;
             }
 
-            if (!status.getIsSecure() &&
-                !status.getFetchFailed())
+            if (!status.getFetchFailed())
             {
-                isNotSecureCount++;
-            }
-            else
-            {
-                isSecureCount++;
+                if (!status.getIsSecure())
+                {
+                    isNotSecureCount++;
+                }
+                else
+                {
+                    isSecureCount++;
+                }
             }
 
             if (!status.getRedirectsHTTPtoHTTPS())
@@ -582,7 +584,8 @@ namespace isMyLoginSecureDesktopDemo
                 mixedContentCount++;
             }
 
-            if (status.hasImperfectSecurityHeaders())
+            if (!status.getFetchFailed() &&
+                status.hasImperfectSecurityHeaders())
             {
                 imperfectSecurityHeaderCount++;
             }
@@ -1236,7 +1239,8 @@ namespace isMyLoginSecureDesktopDemo
                 htmlFragment += listViewResults.Items[row].SubItems[c].Text;
                 htmlFragment += "</td>";
             }
-            htmlFragment += "</tr>\r\n";
+            htmlFragment += "</tr>";
+            htmlFragment += "\r\n";
 
             file.WriteLine(htmlFragment);
         }
@@ -1262,7 +1266,8 @@ namespace isMyLoginSecureDesktopDemo
             xmlFragment += getXMLRowColumn(row, 7, "<URL>");
             xmlFragment += getXMLRowColumn(row, 8, "<UserFriendlyUserAgent>");
             xmlFragment += getXMLRowColumn(row, 9, "<UserAgent>");
-            xmlFragment += "</test>\r\n";
+            xmlFragment += "</test>";
+            xmlFragment += "\r\n";
 
             file.WriteLine(xmlFragment);
         }
@@ -1898,6 +1903,7 @@ namespace isMyLoginSecureDesktopDemo
                                     // end row
 
                                     text += "</tr>";
+                                    text += "\r\n";
 
                                     file.WriteLine(text);
                                 }
@@ -1996,6 +2002,7 @@ namespace isMyLoginSecureDesktopDemo
                                     // end of row
 
                                     text += "</tr>";
+                                    text += "\r\n";
 
                                     file.WriteLine(text);
                                 }
@@ -2097,6 +2104,7 @@ namespace isMyLoginSecureDesktopDemo
                                     // end row
 
                                     text += "</tr>";
+                                    text += "\r\n";
 
                                     file.WriteLine(text);
                                 }
@@ -2178,6 +2186,7 @@ namespace isMyLoginSecureDesktopDemo
                                     // end row
 
                                     text += "</tr>";
+                                    text += "\r\n";
 
                                     file.WriteLine(text);
                                 }
